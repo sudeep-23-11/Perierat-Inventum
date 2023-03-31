@@ -1,5 +1,51 @@
 #header {
     height: 12vh;
     width: 100vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
     border: 1px red solid;
+}
+
+#lost-heading {
+    margin-left: 2%;
+    color: #DC3545;
+}
+
+#found-heading {
+    margin-left: 0.5%;
+    color: #157347;
+}
+
+#header input {
+    height: 35%;
+    width: 20%;
+    margin-left: 20%;
+}
+
+#header img {
+    height: 30%;
+    width: 30%;
+    margin-left: -14%;
+}
+
+#header button{
+    height: 35%;
+    width: 5%;
+    font-size: 100%;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+#lost-button {
+    margin-left: 13%;
+    background-color: #DC3545;
+    border-color: #DC3545;
+}
+
+#found-button {
+    margin-left: 0.5%;
+    background-color: #157347;
+    border-color: #157347;
 }
