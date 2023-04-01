@@ -1,5 +1,7 @@
 #home {
     height: 88vh;
     width: 100vw;
-    border: 1px red solid;
+    display: flex;
+    flex-direction: row;
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
 }
