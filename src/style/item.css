@@ -10,6 +10,14 @@
     width: 50%;
 }
 
+#item h1 {
+    cursor: pointer;
+}
+
+#item h3 {
+    cursor: default;
+}
+
 #item div {
     height: 125%;
     width: 25%;

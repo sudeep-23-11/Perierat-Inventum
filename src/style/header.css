@@ -10,11 +10,13 @@
 #lost-heading {
     margin-left: 2%;
     color: #DC3545;
+    cursor: default;
 }
 
 #found-heading {
     margin-left: 0.5%;
     color: #157347;
+    cursor: default;
 }
 
 #header input {
@@ -34,7 +36,6 @@
     width: 5%;
     font-size: 100%;
     font-weight: bold;
-    color: #FFFFFF;
 }
 
 #lost-button {

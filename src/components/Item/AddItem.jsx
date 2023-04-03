@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import '../../style/add-item.css'
 
@@ -28,8 +29,8 @@ export default function AddItem(props) {
                 <input type="file" />
             </div>
             <div id='ai-button'>
-                <button type='button' style={{background: props.color.button, border: props.color.button}}>Add</button>
-                <button type='button' style={{background: props.color.button, border: props.color.button}}>Cancel</button>
+                <button type='button' style={{background: props.color.button, border: props.color.button}}><Link to="/">Add</Link></button>
+                <button type='button' style={{background: props.color.button, border: props.color.button}}><Link to="/">Cancel</Link></button>
             </div>
         </div>
     )

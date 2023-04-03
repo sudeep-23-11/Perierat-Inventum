@@ -14,6 +14,7 @@
 #add-item div h1 {
     margin-top: 5%;
     margin-left: 5%;
+    cursor: default;
 }
 
 #add-item div label h2, #ai-image input {
@@ -46,5 +47,4 @@
     margin: 0% 1%;
     font-size: 100%;
     font-weight: bold;
-    color: #FFFFFF;
 }

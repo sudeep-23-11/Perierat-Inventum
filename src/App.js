@@ -1,4 +1,6 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { useState, UseEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { v4 as uuid } from 'uuid'
 
 import './style/App.css'
 import Header from './components/Header'
@@ -23,9 +25,19 @@ function App() {
   return (
       <Router>
         <Header />
-        {/* <Home color={[lost, found]}/> */}
-        {/* <AddItem color={found}/> */}
-        <AddItem color={lost}/>
+        <Routes>
+          <Route path='/' element={
+            <Home color={[lost, found]}/>
+          } />
+          <Route />
+          <Route path='/lost' element={
+            <AddItem color={lost}/>
+          } />
+          <Route /><Route path='/found' element={
+            <AddItem color={found}/>
+          } />
+          <Route />
+        </Routes>
       </Router>
   );
 }
