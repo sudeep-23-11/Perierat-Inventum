@@ -6,6 +6,7 @@ import './style/App.css'
 import Header from './components/Header'
 import Home from './components/Home'
 import AddItem from './components/Item/AddItem'
+import ViewItem from './components/Item/ViewItem'
 
 function App() {
 
@@ -25,14 +26,34 @@ function App() {
       background: "linear-gradient(to right, #43e97b 0%, #38f9d7 100%)"
   }
 
+  const [entity, setEntity] = useState(null)
   const [lostList, setLostList] = useState([])
   const [foundList, setFoundList] = useState([])
 
-  let addHandler = (entity) => {
-    if (entity.category === "Lost")
-    setLostList([...lostList, {id: uuid(), ...entity}])
+  let addHandler = (e) => {
+    if (e.category === "Lost")
+    setLostList([...lostList, {id: uuid(), ...e}])
     else
-    setFoundList([...foundList, {id: uuid(), ...entity}])
+    setFoundList([...foundList, {id: uuid(), ...e}])
+  }
+  let viewHandler = (e) => {
+    setEntity(e)
+  }
+  let deleteHandler = (e) => {
+    if (e.category === "Lost")
+    {
+      const newLostList = lostList.filter((entity) => {
+        return entity.id !== e.id;
+      })
+      setLostList(newLostList);
+    }
+    else
+    {
+      const newFoundList = foundList.filter((entity) => {
+        return entity.id !== e.id;
+      })
+      setFoundList(newFoundList);
+    }
   }
 
   useEffect(() => {
@@ -55,16 +76,17 @@ function App() {
         <Header />
         <Routes>
           <Route path='/' element={
-            <Home color={[lost, found]} list={[lostList, foundList]}/>
+            <Home color={[lost, found]} list={[lostList, foundList]} viewHandler={viewHandler}/>
           } />
-          <Route />
           <Route path='/lost' element={
             <AddItem color={lost} addHandler={addHandler}/>
           } />
-          <Route /><Route path='/found' element={
+          <Route path='/found' element={
             <AddItem color={found} addHandler={addHandler}/>
           } />
-          <Route />
+          {entity ? <Route path='/view' element={
+              <ViewItem color={entity.category === "Lost" ? lost : found} entity={entity} deleteHandler={deleteHandler}/>
+          }/> : null}
         </Routes>
       </Router>
   );

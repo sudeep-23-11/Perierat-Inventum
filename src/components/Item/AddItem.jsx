@@ -63,8 +63,8 @@ export default function AddItem(props) {
             </div>
             <div id='ai-image'>
                 <h1>Upload Image</h1>
-                <input type="file" onChange={imageHandler}/>
-                {preview ? <img src={preview} alt="loading"/> : null}
+                <input type="file" onChange={imageHandler} />
+                {preview ? <img src={preview} alt="loading" /> : null}
             </div>
             <div id='ai-button'>
                 <button type='button' style={{background: props.color.button, border: props.color.button}} onClick={addButton}><Link to="/">Add</Link></button>

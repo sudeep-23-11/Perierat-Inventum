@@ -6,8 +6,8 @@ import ItemList from './Item/ItemList'
 export default function Home(props) {
     return (
         <div id='home'>
-            <ItemList color={props.color[0]} list={props.list[0]}/>
-            <ItemList color={props.color[1]} list={props.list[1]}/>
+            <ItemList color={props.color[0]} list={props.list[0]} viewHandler={props.viewHandler}/>
+            <ItemList color={props.color[1]} list={props.list[1]} viewHandler={props.viewHandler}/>
         </div>
     )
 }
