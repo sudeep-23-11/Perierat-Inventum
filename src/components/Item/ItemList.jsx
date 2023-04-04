@@ -6,11 +6,9 @@ import Item from './Item';
 export default function ItemList(props) {
     return (
         <div id='item-list'>
-            <Item color={props.color}/>
-            <Item color={props.color}/>
-            <Item color={props.color}/>
-            <Item color={props.color}/>
-            <Item color={props.color}/>
+            {props.list.map((entity) => {
+                return <Item key={entity.id} color={props.color} entity={entity}/>
+            })}
         </div>
     )
 }

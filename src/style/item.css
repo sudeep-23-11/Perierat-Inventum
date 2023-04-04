@@ -6,26 +6,19 @@
     border-radius: 10%;
 }
 
-#item h1, h3 {
-    width: 50%;
-}
-
 #item h1 {
+    width: 50%;
     cursor: pointer;
 }
 
 #item h3 {
+    width: 50%;
     cursor: default;
 }
 
-#item div {
-    height: 125%;
+#item img {
+    height: 150%;
     width: 25%;
-    margin-top: -17.5%;
+    margin-top: -15%;
     float: right;
-}
-
-#item div img {
-    height: 100%;
-    width: 100%;
 }
