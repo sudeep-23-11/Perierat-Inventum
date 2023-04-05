@@ -28,6 +28,7 @@ function App() {
   }
 
   const [entity, setEntity] = useState(null)
+  const [result, setResult] = useState(null)
   const [lostList, setLostList] = useState([])
   const [foundList, setFoundList] = useState([])
 
@@ -60,46 +61,53 @@ function App() {
     if (e.category === "Lost")
     {
       const newLostList = lostList.map((entity) => {
-        if (entity.id !== e.id)
-        return entity
-        else
-        return e
+        if (entity.id !== e.id) return entity
+        else return e
       })
       setLostList(newLostList)
     }
     else
     {
       const newFoundList = foundList.map((entity) => {
-        if (entity.id !== e.id)
-        return entity
-        else
-        return e
+        if (entity.id !== e.id) return entity
+        else return e
       })
       setFoundList(newFoundList)
     }
   }
+  let searchHandler = (s) => {
+    if (s.length)
+    {
+      const newLostList = lostList.filter((entity) => {
+        return Object.values(entity).join(" ").toLowerCase().includes(s.toLowerCase())
+      })
+      const newFoundList = foundList.filter((entity) => {
+        return Object.values(entity).join(" ").toLowerCase().includes(s.toLowerCase())
+      })
+      setResult([newLostList, newFoundList])
+    }
+    else setResult(null)
+  }
 
   useEffect(() => {
     const storedLostList = JSON.parse(localStorage.getItem(lostKey))
-    if (storedLostList)
-    setLostList(storedLostList)
+    if (storedLostList) setLostList(storedLostList)
     const storedFoundList = JSON.parse(localStorage.getItem(foundKey))
-    if (storedFoundList)
-    setFoundList(storedFoundList)
-  }, [lostKey, foundKey])
+    if (storedFoundList) setFoundList(storedFoundList)
+  }, [])
   useEffect(() => {
     localStorage.setItem(lostKey, JSON.stringify(lostList))
-  }, [lostList, lostKey])
+  }, [lostList])
   useEffect(() => {
     localStorage.setItem(foundKey, JSON.stringify(foundList))
-  }, [foundList, foundKey])
+  }, [foundList])
 
   return (
       <Router>
-        <Header />
+        <Header searchHandler={searchHandler}/>
         <Routes>
           <Route path='/' element={
-            <Home color={[lost, found]} list={[lostList, foundList]} viewHandler={viewHandler}/>
+            <Home color={[lost, found]} list={result ? result : [lostList, foundList]} viewHandler={viewHandler}/>
           } />
           <Route path='/lost' element={
             <AddItem color={lost} addHandler={addHandler}/>
