@@ -7,6 +7,7 @@ import Header from './components/Header'
 import Home from './components/Home'
 import AddItem from './components/Item/AddItem'
 import ViewItem from './components/Item/ViewItem'
+import UpdateItem from './components/Item/UpdateItem'
 
 function App() {
 
@@ -43,16 +44,38 @@ function App() {
     if (e.category === "Lost")
     {
       const newLostList = lostList.filter((entity) => {
-        return entity.id !== e.id;
+        return entity.id !== e.id
       })
-      setLostList(newLostList);
+      setLostList(newLostList)
     }
     else
     {
       const newFoundList = foundList.filter((entity) => {
-        return entity.id !== e.id;
+        return entity.id !== e.id
       })
-      setFoundList(newFoundList);
+      setFoundList(newFoundList)
+    }
+  }
+  let updateHandler = (e) => {
+    if (e.category === "Lost")
+    {
+      const newLostList = lostList.map((entity) => {
+        if (entity.id !== e.id)
+        return entity
+        else
+        return e
+      })
+      setLostList(newLostList)
+    }
+    else
+    {
+      const newFoundList = foundList.map((entity) => {
+        if (entity.id !== e.id)
+        return entity
+        else
+        return e
+      })
+      setFoundList(newFoundList)
     }
   }
 
@@ -86,6 +109,9 @@ function App() {
           } />
           {entity ? <Route path='/view' element={
               <ViewItem color={entity.category === "Lost" ? lost : found} entity={entity} deleteHandler={deleteHandler}/>
+          }/> : null}
+          {entity ? <Route path='/update' element={
+              <UpdateItem color={entity.category === "Lost" ? lost : found} entity={entity} updateHandler={updateHandler}/>
           }/> : null}
         </Routes>
       </Router>

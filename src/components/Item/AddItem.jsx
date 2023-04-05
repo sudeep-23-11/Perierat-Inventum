@@ -12,16 +12,14 @@ export default function AddItem(props) {
     const [phone, setPhone] = useState("")
     const [email, setEmail] = useState("")
     const [image, setImage] = useState(null)
-    const [preview, setPreview] = useState(null)
 
     let imageHandler = (event) => {
         const image = event.target.files[0]
         const reader = new FileReader()
         reader.readAsDataURL(image)
-        reader.addEventListener("load", ()=> {
+        reader.addEventListener("load", () => {
             setImage(reader.result)
         })
-        setPreview(URL.createObjectURL(image))
     }
 
     let addButton = () => {
@@ -31,14 +29,6 @@ export default function AddItem(props) {
             name: name,  phone: phone, email: email,
             image: image
         })
-        setItem("")
-        setPlace("")
-        setDescription("")
-        setName("")
-        setPhone("")
-        setEmail("")
-        setImage(null)
-        setPreview(null)
     }
 
     return (
@@ -64,7 +54,7 @@ export default function AddItem(props) {
             <div id='ai-image'>
                 <h1>Upload Image</h1>
                 <input type="file" onChange={imageHandler} />
-                {preview ? <img src={preview} alt="loading" /> : null}
+                {image ? <img src={image} alt="loading" /> : null}
             </div>
             <div id='ai-button'>
                 <button type='button' style={{background: props.color.button, border: props.color.button}} onClick={addButton}><Link to="/">Add</Link></button>
