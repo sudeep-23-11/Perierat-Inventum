@@ -28,6 +28,7 @@ function App() {
   }
 
   const [entity, setEntity] = useState(null)
+  const [search, setSearch] = useState("")
   const [result, setResult] = useState(null)
   const [lostList, setLostList] = useState([])
   const [foundList, setFoundList] = useState([])
@@ -38,9 +39,7 @@ function App() {
     else
     setFoundList([...foundList, {id: uuid(), ...e}])
   }
-  let viewHandler = (e) => {
-    setEntity(e)
-  }
+
   let deleteHandler = (e) => {
     if (e.category === "Lost")
     {
@@ -57,6 +56,7 @@ function App() {
       setFoundList(newFoundList)
     }
   }
+
   let updateHandler = (e) => {
     if (e.category === "Lost")
     {
@@ -75,20 +75,21 @@ function App() {
       setFoundList(newFoundList)
     }
   }
-  let searchHandler = (s) => {
-    if (s.length)
+
+  useEffect(() => {
+    if (search.length)
     {
       const newLostList = lostList.filter((entity) => {
-        return Object.values(entity).join(" ").toLowerCase().includes(s.toLowerCase())
+        return Object.values(entity).join(" ").toLowerCase().includes(search.toLowerCase())
       })
       const newFoundList = foundList.filter((entity) => {
-        return Object.values(entity).join(" ").toLowerCase().includes(s.toLowerCase())
+        return Object.values(entity).join(" ").toLowerCase().includes(search.toLowerCase())
       })
       setResult([newLostList, newFoundList])
     }
     else setResult(null)
-  }
-
+  }, [search, lostList, foundList])
+  
   useEffect(() => {
     const storedLostList = JSON.parse(localStorage.getItem(lostKey))
     if (storedLostList) setLostList(storedLostList)
@@ -104,10 +105,10 @@ function App() {
 
   return (
       <Router>
-        <Header searchHandler={searchHandler}/>
+        <Header search={search} setSearch={setSearch}/>
         <Routes>
           <Route path='/' element={
-            <Home color={[lost, found]} list={result ? result : [lostList, foundList]} viewHandler={viewHandler}/>
+            <Home color={[lost, found]} list={result ? result : [lostList, foundList]} setEntity={setEntity}/>
           } />
           <Route path='/lost' element={
             <AddItem color={lost} addHandler={addHandler}/>
