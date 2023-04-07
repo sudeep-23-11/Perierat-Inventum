@@ -1,6 +1,5 @@
 import React from 'react'
 
-import '../../style/item-list.css'
 import Item from './Item'
 
 export default function ItemList(props) {

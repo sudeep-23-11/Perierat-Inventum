@@ -4,6 +4,20 @@
   box-sizing: border-box;
 }
 
+#home {
+  height: 88vh;
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+}
+
+#item-list {
+  height: 100%;
+  width: 50%;
+  overflow-y: auto;
+}
+
 a:-webkit-any-link {
   color: #FFFFFF;
   text-decoration: none;
