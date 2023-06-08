@@ -12,7 +12,7 @@ export default function Item(props) {
     }
 
     return (
-        <div id='item' style={{background: props.color.background}}>
+        <div id='item' style={{background: props.color.background, fontFamily: 'Poppins',}}>
             <h1 onClick={viewButton}><Link to="/view" style={{color: "#000000"}}>{props.entity.item}</Link></h1>
             <h3>{props.entity.place}</h3>
             <img src={image} alt="loading" />

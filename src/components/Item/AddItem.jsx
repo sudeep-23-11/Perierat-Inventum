@@ -32,7 +32,7 @@ export default function AddItem(props) {
     }
 
     return (
-        <div id='add-item' style={{background: props.color.background}}>
+        <div id='add-item' style={{background: props.color.background, fontFamily: 'Poppins',}}>
             <div id='ai-item'>
                 <h1>Item {props.color.category}</h1>
                 <label htmlFor="item"><h2>Item</h2></label>
@@ -57,8 +57,13 @@ export default function AddItem(props) {
                 {image ? <img src={image} alt="loading" /> : null}
             </div>
             <div id='ai-button'>
-                <button type='button' style={{background: props.color.button, border: props.color.button}} onClick={addButton}><Link to="/">Add</Link></button>
-                <button type='button' style={{background: props.color.button, border: props.color.button}}><Link to="/">Cancel</Link></button>
+                <button type='button' style={{background: props.color.button, 
+                border: props.color.button,
+                boxShadow: `0 0 10px ${props.color.button}`,
+                borderRadius: '5px',
+                }} onClick={addButton}><Link to="/">Add</Link></button>
+                <button type='button' style={{background: props.color.button, border: props.color.button,boxShadow: `0 0 10px ${props.color.button}`,
+                borderRadius: '5px', paddingLeft:'2px', paddingRight:'2px'}}><Link to="/">Cancel</Link></button>
             </div>
         </div>
     )

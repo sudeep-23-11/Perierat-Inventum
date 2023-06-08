@@ -32,7 +32,7 @@ export default function UpdateItem(props) {
     }
 
     return (
-        <div id='add-item' style={{background: props.color.background}}>
+        <div id='add-item' style={{background: props.color.background, fontFamily: 'Poppins',}}>
             <div id='ai-item'>
                 <h1>Item {props.color.category}</h1>
                 <label htmlFor="item"><h2>Item</h2></label>

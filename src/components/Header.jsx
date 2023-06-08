@@ -5,7 +5,7 @@ import '../style/header.css'
 
 export default function Header(props) {
     return (
-        <div id='header'>
+        <div id='header' style={{fontFamily: 'Poppins',}} >
             <h1 id='lost-heading'>Perierat</h1>
             <h1 id='found-heading'>Inventum</h1>
             <input type="search" placeholder='Search' value={props.search} onChange={(e) => props.setSearch(e.target.value)}/>
