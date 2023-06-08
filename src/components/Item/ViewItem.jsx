@@ -12,7 +12,7 @@ export default function ViewItem(props) {
     }
 
     return (
-        <div id='view-item' style={{background: props.color.background}}>
+        <div id='view-item' style={{background: props.color.background, fontFamily: 'Poppins'}}>
             <div id='vi-item'>
                 <h2>{props.entity.item}</h2>
                 <h2>{props.entity.place}</h2>
