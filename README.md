@@ -1,6 +1,6 @@
 # Perierat Inventum
-* A website for management of lost and found items
-* Run "bash setup.sh" command on linux terminal to start
+* A responsive website for management of lost and found items
+* Run setup.sh file to launch
 
 ## Add and Store items
 * add and store lost/found item details
