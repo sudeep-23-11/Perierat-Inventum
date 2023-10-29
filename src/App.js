@@ -5,6 +5,13 @@ import ViewList from './components/ViewList'
 import ViewItem from './components/ViewItem'
 
 function App() {
+
+    const data = {
+        item: "", place: "", description: "",
+        name: "", phone: "", email: "",
+        image: null
+    };
+
     return (
         <Router>
             <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
@@ -39,11 +46,11 @@ function App() {
             </nav>
             
             <Routes>
-                <Route path="/" element={<ViewList />} />
-                <Route path="/add-item-lost" element={<AddItem />} />
-                <Route path="/view-list-lost" element={<ViewList />} />
-                <Route path="/add-item-found" element={<AddItem />} />
-                <Route path="/view-list-found" element={<ViewList />} />
+                <Route path="/" element={<ViewList category="both"/>} />
+                <Route path="/add-item-lost" element={<AddItem category="lost" op="add" data={data}/>} />
+                <Route path="/view-list-lost" element={<ViewList category="lost"/>} />
+                <Route path="/add-item-found" element={<AddItem category="found" op="add" data={data}/>} />
+                <Route path="/view-list-found" element={<ViewList category="found"/>} />
                 <Route path="/view-item" element={<ViewItem />} />
             </Routes>
         </Router>
