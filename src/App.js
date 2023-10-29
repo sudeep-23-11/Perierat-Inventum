@@ -47,10 +47,15 @@ function App() {
             
             <Routes>
                 <Route path="/" element={<ViewList category="both"/>} />
+
                 <Route path="/add-item-lost" element={<AddItem category="lost" op="add" data={data}/>} />
+                <Route path="/update-item-lost" element={<AddItem category="lost" op="update" data={data}/>} />
                 <Route path="/view-list-lost" element={<ViewList category="lost"/>} />
+
                 <Route path="/add-item-found" element={<AddItem category="found" op="add" data={data}/>} />
+                <Route path="/update-item-found" element={<AddItem category="found" op="update" data={data}/>} />
                 <Route path="/view-list-found" element={<ViewList category="found"/>} />
+
                 <Route path="/view-item" element={<ViewItem />} />
             </Routes>
         </Router>
