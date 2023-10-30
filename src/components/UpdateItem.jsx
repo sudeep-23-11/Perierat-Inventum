@@ -2,15 +2,15 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
-export default function AddItem(props) {
+export default function UpdateItem(props) {
 
-    const [item, setItem] = useState("")
-    const [place, setPlace] = useState("")
-    const [description, setDescription] = useState("")
-    const [name, setName] = useState("")
-    const [phone, setPhone] = useState("")
-    const [email, setEmail] = useState("")
-    const [image, setImage] = useState(null)
+    const [item, setItem] = useState(props.entity.item)
+    const [place, setPlace] = useState(props.entity.place)
+    const [description, setDescription] = useState(props.entity.description)
+    const [name, setName] = useState(props.entity.name)
+    const [phone, setPhone] = useState(props.entity.phone)
+    const [email, setEmail] = useState(props.entity.email)
+    const [image, setImage] = useState(props.entity.image)
 
     let imageHandler = (e) => {
         const image = e.target.files[0]
@@ -21,18 +21,18 @@ export default function AddItem(props) {
         })
     }
 
-    let addHandler = () => {
-        axios.post("https://653f56889e8bd3be29e0557d.mockapi.io/perierat-inventum", {
-            category: props.category,
+    let updateHandler = () => {
+        axios.put(`https://653f56889e8bd3be29e0557d.mockapi.io/perierat-inventum/${props.entity.id}`, {
+            category: props.entity.category,
             item: item, place: place, description: description,
             name: name, phone: phone, email: email,
-            image: image ? image : "./icons/na.png"
+            image: image
         })
         .then((response) => {
             props.setFlag(!props.flag);
         })
         .catch((error) => {
-            console.log("Error in posting data\n", error)
+            console.log("Error in putting data\n", error)
         })
     }
 
@@ -51,16 +51,13 @@ export default function AddItem(props) {
                 <input className='d-block w-75 mb-3' type="tel" name='phone' placeholder='Enter phone number' maxLength={10} value={phone} onChange={(e) => setPhone(e.target.value)}/>
                 <label className='fw-bold' htmlFor="email">Email</label>
                 <input className='d-block w-75 mb-3' type="email" name='email' placeholder='Enter email' value={email} onChange={(e) => setEmail(e.target.value)}/>
-                <button type="button" className='btn me-3' onClick={addHandler}><Link className='text-dark text-decoration-none' to="/">Add</Link></button>
+                <button type="button" className='btn me-3' onClick={updateHandler}><Link className='text-dark text-decoration-none' to="/">Update</Link></button>
                 <button type="button" className='btn'><Link className='text-dark text-decoration-none' to="/">Cancel</Link></button>
             </div>
             <div className="container w-25">
                 <label className='fw-bold' htmlFor="image">Upload Image</label>
                 <input className='d-block' type="file" name='image' onChange={imageHandler} />
-                {
-                    image ? <img className='h-100 w-100 mt-3' src={image} alt="loading" />
-                    : null
-                }
+                <img className='h-100 w-100 mt-3' src={image} alt="loading" />
             </div>
         </div>
     )

@@ -1,16 +1,27 @@
+import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import axios from 'axios'
 
 import AddItem from './components/AddItem'
 import ViewList from './components/ViewList'
+import UpdateItem from './components/UpdateItem'
 import ViewItem from './components/ViewItem'
 
 function App() {
 
-    const data = {
-        item: "", place: "", description: "",
-        name: "", phone: "", email: "",
-        image: null
-    };
+    const [entity, setEntity] = useState(null)
+    const [flag, setFlag] = useState(false)
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+        axios.get("https://653f56889e8bd3be29e0557d.mockapi.io/perierat-inventum")
+            .then((response) => {
+                setData(response.data)
+            })
+            .catch((error) => {
+                console.log("Error in getting data\n", error)
+            })
+    }, [flag])
 
     return (
         <Router>
@@ -46,17 +57,16 @@ function App() {
             </nav>
             
             <Routes>
-                <Route path="/" element={<ViewList category="both"/>} />
+                <Route path="/" element={<ViewList category="lost-found" data={data} setEntity={setEntity}/>} />
 
-                <Route path="/add-item-lost" element={<AddItem category="lost" op="add" data={data}/>} />
-                <Route path="/update-item-lost" element={<AddItem category="lost" op="update" data={data}/>} />
-                <Route path="/view-list-lost" element={<ViewList category="lost"/>} />
+                <Route path="/add-item-lost" element={<AddItem category="lost" flag={flag} setFlag={setFlag}/>} />
+                <Route path="/view-list-lost" element={<ViewList category="lost" data={data} setEntity={setEntity}/>} />
 
-                <Route path="/add-item-found" element={<AddItem category="found" op="add" data={data}/>} />
-                <Route path="/update-item-found" element={<AddItem category="found" op="update" data={data}/>} />
-                <Route path="/view-list-found" element={<ViewList category="found"/>} />
+                <Route path="/add-item-found" element={<AddItem category="found" flag={flag} setFlag={setFlag}/>} />
+                <Route path="/view-list-found" element={<ViewList category="found" data={data} setEntity={setEntity}/>} />
 
-                <Route path="/view-item" element={<ViewItem />} />
+                <Route path="/update-item" element={<UpdateItem entity={entity} flag={flag} setFlag={setFlag}/>} />
+                <Route path="/view-item" element={<ViewItem entity={entity} flag={flag} setFlag={setFlag}/>} />
             </Routes>
         </Router>
     );
