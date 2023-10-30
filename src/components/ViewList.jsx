@@ -3,13 +3,17 @@ import { Link } from 'react-router-dom'
 
 export default function ViewList(props) {
     return (
-        <div className="container-fluid" style={{minHeight: "100vh"}}>
-            <div className="container d-flex flex-row flex-wrap gap-2" style={{marginTop: "5%"}}>
+        <div className="container-fluid" style={{minHeight: "100vh", backgroundColor: "#F1EFEF"}}>
+            <div className="container d-flex flex-row flex-wrap gap-2">
                 {props.data.map((e) => {
-                    return props.category.includes(e.category) ?
-                        <Link key={e.id} className="container text-center w-25 text-dark text-decoration-none" to="/view-item" onClick={() => {props.setEntity(e)}}>
+
+                    const bgc = e.category==="lost" ? "#FCAEAE" : "#D0E7D2";
+                    const tc = e.category==="lost" ? "#FE0000" : "#618264";
+
+                    return props.category.includes(e.category) && Object.values(e).join(' ').toLowerCase().includes(props.search.toLowerCase()) ?
+                        <Link key={e.id} className="container d-flex flex-column justify-content-center align-items-center w-25 text-decoration-none border border-black rounded" to="/view-item" style={{marginTop: "5%", backgroundColor: bgc, color: tc}} onClick={() => props.setEntity(e)}>
+                            <img className='h-50 w-50 mb-3' src={e.image} alt="loading" />
                             <h1>{e.item}</h1>
-                            <img className='h-50 w-50' src={e.image} alt="loading" />
                         </Link>
                     : null
                 })}

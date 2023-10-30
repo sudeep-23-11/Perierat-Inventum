@@ -4,6 +4,9 @@ import axios from 'axios'
 
 export default function UpdateItem(props) {
 
+    const bgc = props.entity.category==="lost" ? "#FCAEAE" : "#D0E7D2";
+    const tc = props.entity.category==="lost" ? "#FE0000" : "#618264";
+
     const [item, setItem] = useState(props.entity.item)
     const [place, setPlace] = useState(props.entity.place)
     const [description, setDescription] = useState(props.entity.description)
@@ -37,22 +40,22 @@ export default function UpdateItem(props) {
     }
 
     return (
-        <div className="container-fluid d-flex flex-row align-items-center" style={{minHeight: "100vh"}}>
+        <div className="container-fluid d-flex flex-row align-items-center" style={{minHeight: "100vh", backgroundColor: bgc, color: tc}}>
             <div className="container w-25">
                 <label className='fw-bold' htmlFor="item">Item</label>
-                <input className='d-block w-75 mb-3' type="text" name='item' placeholder='Enter item' autoFocus value={item} onChange={(e) => setItem(e.target.value)}/>
+                <input className='d-block rounded w-75 mb-3' type="text" name='item' placeholder='Enter item' autoFocus value={item} onChange={(e) => setItem(e.target.value)}/>
                 <label className='fw-bold' htmlFor="place">Place</label>
-                <input className='d-block w-75 mb-3' type="text" name='place' placeholder='Enter place' value={place} onChange={(e) => setPlace(e.target.value)}/>
+                <input className='d-block rounded w-75 mb-3' type="text" name='place' placeholder='Enter place' value={place} onChange={(e) => setPlace(e.target.value)}/>
                 <label className='fw-bold' htmlFor="description">Description</label>
-                <textarea className='d-block mb-3' name="description" placeholder='Enter description' cols="33" rows="4" value={description} onChange={(e) => setDescription(e.target.value)}/>
+                <textarea className='d-block rounded mb-3' name="description" placeholder='Enter description' cols="33" rows="4" value={description} onChange={(e) => setDescription(e.target.value)}/>
                 <label className='fw-bold' htmlFor="name">Name</label>
-                <input className='d-block w-75 mb-3' type="text" name='name' placeholder='Enter name' value={name} onChange={(e) => setName(e.target.value)}/>
+                <input className='d-block rounded w-75 mb-3' type="text" name='name' placeholder='Enter name' value={name} onChange={(e) => setName(e.target.value)}/>
                 <label className='fw-bold' htmlFor="phone">Phone Number</label>
-                <input className='d-block w-75 mb-3' type="tel" name='phone' placeholder='Enter phone number' maxLength={10} value={phone} onChange={(e) => setPhone(e.target.value)}/>
+                <input className='d-block rounded w-75 mb-3' type="tel" name='phone' placeholder='Enter phone number' maxLength={10} value={phone} onChange={(e) => setPhone(e.target.value)}/>
                 <label className='fw-bold' htmlFor="email">Email</label>
-                <input className='d-block w-75 mb-3' type="email" name='email' placeholder='Enter email' value={email} onChange={(e) => setEmail(e.target.value)}/>
-                <button type="button" className='btn me-3' onClick={updateHandler}><Link className='text-dark text-decoration-none' to="/">Update</Link></button>
-                <button type="button" className='btn'><Link className='text-dark text-decoration-none' to="/">Cancel</Link></button>
+                <input className='d-block rounded w-75 mb-3' type="email" name='email' placeholder='Enter email' value={email} onChange={(e) => setEmail(e.target.value)}/>
+                <button type="button" className='btn me-3' style={{backgroundColor: tc}} onClick={updateHandler}><Link className='text-light text-decoration-none' to="/">Update</Link></button>
+                <button type="button" className='btn' style={{backgroundColor: tc}}><Link className='text-light text-decoration-none' to="/">Cancel</Link></button>
             </div>
             <div className="container w-25">
                 <label className='fw-bold' htmlFor="image">Upload Image</label>

@@ -10,6 +10,7 @@ import ViewItem from './components/ViewItem'
 function App() {
 
     const [entity, setEntity] = useState(null)
+    const [search, setSearch] = useState("")
     const [flag, setFlag] = useState(false)
     const [data, setData] = useState([])
 
@@ -49,21 +50,20 @@ function App() {
                             </li>
                         </ul>
                         <form className="d-flex" role="search">
-                            <input className="form-control me-3" type="search" placeholder="Search" aria-label="Search" />
-                            <button className="btn me-5" type="submit">Search</button>
+                            <input className="form-control me-5 border-black" type="search" placeholder="Search" aria-label="Search" value={search} onChange={(e) => setSearch(e.target.value)}/>
                         </form>
                     </div>
                 </div>
             </nav>
             
             <Routes>
-                <Route path="/" element={<ViewList category="lost-found" data={data} setEntity={setEntity}/>} />
+                <Route path="/" element={<ViewList category="lost found" search={search} data={data} setEntity={setEntity}/>} />
 
                 <Route path="/add-item-lost" element={<AddItem category="lost" flag={flag} setFlag={setFlag}/>} />
-                <Route path="/view-list-lost" element={<ViewList category="lost" data={data} setEntity={setEntity}/>} />
+                <Route path="/view-list-lost" element={<ViewList category="lost" search={search} data={data} setEntity={setEntity}/>} />
 
                 <Route path="/add-item-found" element={<AddItem category="found" flag={flag} setFlag={setFlag}/>} />
-                <Route path="/view-list-found" element={<ViewList category="found" data={data} setEntity={setEntity}/>} />
+                <Route path="/view-list-found" element={<ViewList category="found" search={search} data={data} setEntity={setEntity}/>} />
 
                 <Route path="/update-item" element={<UpdateItem entity={entity} flag={flag} setFlag={setFlag}/>} />
                 <Route path="/view-item" element={<ViewItem entity={entity} flag={flag} setFlag={setFlag}/>} />
