@@ -9,26 +9,28 @@ import ViewItem from './components/ViewItem'
 
 function App() {
 
+    const key = process.env.REACT_APP_API_KEY;
+
     const [entity, setEntity] = useState(null)
     const [search, setSearch] = useState("")
     const [flag, setFlag] = useState(false)
     const [data, setData] = useState([])
 
     useEffect(() => {
-        axios.get("https://653f56889e8bd3be29e0557d.mockapi.io/perierat-inventum")
+        axios.get(`https://${key}.mockapi.io/perierat-inventum`)
             .then((response) => {
                 setData(response.data)
             })
             .catch((error) => {
                 console.log("Error in getting data\n", error)
             })
-    }, [flag])
+    }, [flag, key])
 
     return (
         <Router>
             <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
                 <div className="container-fluid">
-                    <Link className="navbar-brand ms-5 fw-bold" to="/">Perierat Inventum</Link>
+                    <Link className="navbar-brand ms-5 fw-bold" to="/"><p className='d-inline' style={{color: "#FE0000"}}>Perierat</p> <p className='d-inline' style={{color: "#618264"}}>Inventum</p></Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
